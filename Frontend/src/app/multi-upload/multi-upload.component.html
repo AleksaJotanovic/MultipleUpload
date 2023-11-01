@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="container-sm">
+    <div>
+      <label for="multiUpload" class="form-label">Set Your Gallery:</label>
+      <input #fileInput type="file" class="form-control" id="multiUpload" name="files" multiple>
+    </div>
+    <button type="button" class="btn btn-lg btn-outline-success rounded-0" (click)="uploadImages()">Save Image</button>
+  </div>
+  <div class="container-sm">
+    <div class="product">
+      <div class="product__images">
+        <img #mainImage alt="" class="product__main-image img-fluid" id="main-image" />
+
+        <div class="product__slider-wrap">
+          <div class="product__slider">
+            <img *ngFor="let image of images" [src]="image.name" alt="google pixel 6"
+              class="product__image product__image--active" (click)="choose($event, mainImage)" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic input adding. -->
+  <div class="container-sm">
+    <div *ngFor="let value of values; let i = index">
+      <input type="text" [(ngModel)]="value.value" #name="ngModel" name="value{{i}}">
+      <button type="button" (click)="removeValue(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addValue()">Add Value</button>
+    <br>
+    <hr>
+    <h2>Result</h2>
+    <div *ngFor="let value of values">
+      {{value.value}}
+    </div>
+  </div>
+  <!---------------------------->
+
+</div>
